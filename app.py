@@ -156,7 +156,7 @@ def delete_user(user_id):
     except Exception as e:
         return jsonify({'error': 'An error occurred during user deletion'}), 500
 
-# Initialize the database
+# Initialise the database
 with app.app_context():
     db.create_all()
 
