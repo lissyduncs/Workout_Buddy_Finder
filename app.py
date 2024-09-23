@@ -3,6 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from init import bcrypt, jwt, init_app
 
+from controllers.buddy_request_controller import buddy_request_bp
+app.register_blueprint(buddy_request_bp)
+
+from controllers.workout_session_controller import workout_session_bp
+app.register_blueprint(workout_session_bp)
+
+from controllers.message_controller import message_bp
+app.register_blueprint(message_bp)
+
 # Initialise the extensions
 init_app(app)
 
