@@ -28,3 +28,26 @@ Psycopg2 is used to enable Python and Flask to be able to communicate with the P
 Marshmallow schemas are used for serialization/deserialization the data that’s passed through the API endpoints.
 
 Flask-Migrate helped apply the changes to the database schema in a controlled way during development.
+
+# R4
+
+The underlying database system for the Workout Buddy Finder is PostgreSQL, which is an excellent choice because of its scalability and being robust
+Some benefits include:
+- ACID compliance which ensures reliable operations and makes sure the data stays consistent, even in the case of failures
+- It's compatible with SQLAlchemy ORM which makes the interaction with the database efficient through Python models
+- It's highly scalable which makes it suitable for apps with growing user bases
+- It can be easily expanded with add-ons to include more advanced features
+
+Drawbacks:
+- PostgreSQL requires more complex setup than other simpler databases
+- It can be more resource-heavy in terms of CPU and memory, especially for small projects
+
+# R5
+
+The ORM system that’s used in this app is SQLAlchemy which connects Python code and the PostgreSQL database
+Features:
+- SQLAlchemy lets developers work with with database tables as if they are working with regular Python objects, which the code easier to understand and work with. Instead of writing complex SQL queries, SQLAlchemy actually simplifies these into more basic Python code, which also makes the process more manageable. It also manages relationships between tables efficiently without needing complex SQL, so makes managing and working with the database easier and more efficient which helps the app handle data in a simpler way.
+Purpose:
+- The purpose of SQLAlchemy is to make it easy to work with the database without needing to write complicated SQL, which speeds up development and makes the code easier to manage
+Functionalities:
+- SQLAlchemy has several simple functionalities. It turns Python objects into database tables (and back), so data is easy to store as well as retrieve. It also makes querying the database easier because there are built-in tools for filtering and modifying data. It also manages processes automatically, which makes sure changes are saved correctly or undone if there’s an error which all make working with the database faster and simpler.
