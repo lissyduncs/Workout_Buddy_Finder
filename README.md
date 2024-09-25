@@ -51,3 +51,13 @@ Purpose:
 - The purpose of SQLAlchemy is to make it easy to work with the database without needing to write complicated SQL, which speeds up development and makes the code easier to manage
 Functionalities:
 - SQLAlchemy has several simple functionalities. It turns Python objects into database tables (and back), so data is easy to store as well as retrieve. It also makes querying the database easier because there are built-in tools for filtering and modifying data. It also manages processes automatically, which makes sure changes are saved correctly or undone if there’s an error which all make working with the database faster and simpler.
+
+# R6
+
+The ERD for the Workout Buddy Finder is designed to ensure that that each piece of data is stored only once to avoid redundancy. For example in User and Workout Sessions, one user can be linked to many workout sessions and by storing user data separately, we only keep it once and refer to it using foreign keys. 
+Without this 3NF normalisation, we might end up repeating the user’s details in every session, which wastes space and makes updating harder. In the same way, requests are stored in their own table, which means we don’t have to duplicate session information when users request to join multiple sessions. This way, each session only exists once. See attachment in docs for ERD.
+
+# R7
+
+These relationships help ensure that the database is organised and prevents repeating the same information in multiple places. By keeping the user’s information in one place and linking to other tables, the system stays efficient as well as scalable, which helps make it easier to handle updates and changes as the app grows.
+The relationships help make data searches and management more simple because everything is connected and easy to find.
