@@ -61,3 +61,45 @@ Without this 3NF normalisation, we might end up repeating the user’s details i
 
 These relationships help ensure that the database is organised and prevents repeating the same information in multiple places. By keeping the user’s information in one place and linking to other tables, the system stays efficient as well as scalable, which helps make it easier to handle updates and changes as the app grows.
 The relationships help make data searches and management more simple because everything is connected and easy to find.
+
+# R8
+
+- Create User:
+HTTP Verb: POST
+Path: /users
+Body: { "user_name": "string", "user_email": "string", "user_password": "string", "user_location": "string (optional)" }
+Response:
+Success: 201 Created, with a success message.
+Failure: 400 Bad Request if any required fields are missing, or 500 for server errors.
+- Get All Users:
+HTTP Verb: GET
+Path: /users
+Response:
+Success: 200 OK, with a list of users.
+Failure: 500 Internal Server Error.
+- Create Workout Session:
+HTTP Verb: POST
+Path: /workouts
+Body: { "customer_id": "int", "workout_location": "string", "workout_type": "string", "workout_time": "string (timestamp)" }
+Response:
+Success: 201 Created, with a success message.
+Failure: 400 Bad Request for missing fields, 500 for server errors.
+- Create Buddy Request:
+HTTP Verb: POST
+Path: /requests
+Body: { "workout_id": "int", "request_message": "string (optional)" }
+Response:
+Success: 201 Created, with a success message.
+Failure: 400 Bad Request for missing fields, 500 for server errors.
+- Get All Buddy Requests:
+HTTP Verb: GET
+Path: /requests
+Response:
+Success: 200 OK, with a list of buddy requests.
+Failure: 500 Internal Server Error.
+- Delete User:
+HTTP Verb: DELETE
+Path: /users/{user_id}
+Response:
+Success: 200 OK, with a success message.
+Failure: 404 Not Found if user doesn’t exist, 500 for server errors.
