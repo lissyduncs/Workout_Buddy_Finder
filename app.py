@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+import re  
+import bleach
 from config import Config
 from init import bcrypt, jwt, init_app
 
@@ -21,6 +23,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///workout_buddy.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+# Email validation function
+def is_valid_email(email):
+    email_regex = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    return re.match(email_regex, email)
 
 # Users, Workout Sessions, Buddy Requests
 class User(db.Model):
@@ -47,6 +54,11 @@ class BuddyRequest(db.Model):
 def create_user():
     try:
         data = request.get_json()
+
+        # Validate email format
+        if not is_valid_email(data['user_email']):
+            return jsonify({'error': 'Invalid email format'}), 400
+
         new_user = User(
             user_name=data['user_name'],
             user_email=data['user_email'],
@@ -87,7 +99,7 @@ def create_buddy_request():
         data = request.get_json()
         new_request = BuddyRequest(
             workout_id=data['workout_id'],
-            request_message=data.get('request_message')
+            request_message=bleach.clean(data.get('request_message'))  # Sanitizing the request message
         )
         db.session.add(new_request)
         db.session.commit()
