@@ -1,3 +1,7 @@
+Workout Buddy Finder
+
+https://github.com/lissyduncs/Workout_Buddy_Finder
+
 # R1
 
 Staying committed to your fitness goals can be a a challenge, especially when you’re having to work out solo. Working out with a partner makes people more accountable to show up consistently for their training session as they’re held accountable when they have to meet up with someone, however many people struggle to find a workout partner that has a similar interest in workout preference as well as matching locations, schedules and fitness levels. This can be a challenge for people who might have moved to a new area or don’t have an established network 
