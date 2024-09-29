@@ -5,7 +5,18 @@ import bleach
 from config import Config
 from init import bcrypt, jwt, init_app
 
-# Register theblueprints 
+# Create the Flask app object
+app = Flask(__name__)
+
+# Configure the database URL and SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///workout_buddy.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+# Initialise the extensions (bcrypt, jwt)
+init_app(app)
+
+# Register the blueprints AFTER the app is created
 from controllers.buddy_request_controller import buddy_request_bp
 app.register_blueprint(buddy_request_bp)
 
@@ -14,16 +25,6 @@ app.register_blueprint(workout_session_bp)
 
 from controllers.message_controller import message_bp
 app.register_blueprint(message_bp)
-
-# initialise the extensions
-init_app(app)
-
-app = Flask(__name__)
-
-# Configure the database URL and SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///workout_buddy.db'  # Use SQLite for local development
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable unnecessary tracking feature to save resources
-db = SQLAlchemy(app)
 
 # the email validation function to ensure valid email format
 def is_valid_email(email):

@@ -103,3 +103,20 @@ Path: /users/{user_id}
 Response:
 Success: 200 OK, with a success message.
 Failure: 404 Not Found if user doesn’t exist, 500 for server errors.
+
+# To Run Workout Buddy Finder from local machine:
+
+- Start a Python virtual environment:
+python3 -m venv venv
+
+- Activate the virtual environment:
+source venv/bin/activate
+
+- Install dependencies:
+pip install -r requirements.txt
+
+- Create the database and tables:
+flask db create
+
+- Run the Flask app:
+flask run
